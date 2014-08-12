@@ -120,7 +120,10 @@ def map(requests, stream=False, size=None, exception_handler=None):
         if request.response:
             ret.append(request.response)
         elif exception_handler:
-            exception_handler(request, request.exception)
+            if request.exception:
+                exception_handler(request, request.exception)
+            else:
+                exception_handler(request, None)
 
     return ret
 
