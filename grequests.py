@@ -147,7 +147,7 @@ def imap(requests, stream=False, size=2, exception_handler=None):
         if request.response:
             yield request.response
         elif exception_handler:
-            if request.exception:
+            if hasattr(request,"exception"):
                 exception_handler(request, request.exception)
             else:
                 exception_handler(request, None)
